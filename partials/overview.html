@@ -1,38 +1,38 @@
-<section class="masthead">
+<section class="jumbotron">
   <div class="row">
-    <h1>Zahtjevi za pristup informacijama</h1>
+    <h1>Official Information Requests</h1>
     <h2> 
-      od {{from}} do {{to}} 
+      from <b>{{from}}</b> to <b>{{to}}</b>
       <br/>
-      na <a href="https://imamopravoznati.org">ImamoPravoZnati.org</a>
+      on <a href="https://fyi.org.nz">fyi.org.nz</a>
     </h2>
   </div>
 </section>
-<section>
+<section class="container-fluid">
   <div class="row overview">
-    <div class="large-12 columns">
-      <h1>{{total}} zahtjeva</h1>
-      <ul class="large-block-grid-3 small-block-grid-1">
-        <li class="successful">
+    <div class="col-xs-12">
+      <h1>{{total}} Requests</h1>
+      <ul class="row list-inline">
+        <li class="col-xs-4 successful">
           <h2>{{successCount}}</h2>
-          <h3 class="subheader">Uspješni</h3>
+          <h3 class="subheader">Successful</h3>
         </li>
-        <li class="refused">
+        <li class="col-xs-4 refused">
         <h2>{{refusedCount}}</h2>
-          <h3 class="subheader">Odbijeni</h3>
+          <h3 class="subheader">Refused</h3>
         </li>
-        <li class="not-held">
+        <li class="col-xs-4 not-held">
           <h2>{{notHeldCount}}</h2>
-          <h3 class="subheader">Ne raspolažemo</h3>
+          <h3 class="subheader">Not Held</h3>
         </li>
       </ul>
     </div>
   </div>
   <div class="row">
-    <div class="large-12 columns">
-      <h1>Najuspješniji zahtjevi</h1>
-      <ul class="large-block-grid-3 small-block-grid-1 successful" >
-        <li ng-repeat="item in successful">
+    <div class="col-xs-12">
+      <h1>Most Successful Requests</h1>
+      <ul class="row list-inline successful" >
+        <li class="col-xs-4" ng-repeat="item in successful">
           <a href="{{site}}/body/{{item.url}}">
             <h2>{{100 * item.rate / item.count | number:0}}%</h2>
             <h4 class="subheader">{{item.rate}} out of {{item.count}}</h4>
@@ -43,13 +43,13 @@
     </div>
   </div>
   <div class="row">
-    <div class="large-12 columns">
-      <h1>Najviše odbijeni zahtjevi</h1>
-      <ul class="large-block-grid-3 small-block-grid-1 refused">
-        <li ng-repeat="item in refused">
+    <div class="col-xs-12">
+      <h1>Most Refused Requests</h1>
+      <ul class="row list-inline refused">
+        <li class="col-xs-4" ng-repeat="item in refused">
           <a href="{{site}}/body/{{item.url}}">
             <h2>{{100 * item.rate / item.count | number:0}}%</h2>
-            <h4 class="subheader">{{item.rate}} od {{item.count}}</h4>
+            <h4 class="subheader">{{item.rate}} out of {{item.count}}</h4>
             <h3 class="subheader">{{item.name}}</h3>
           </a>
         </li>
@@ -57,13 +57,13 @@
     </div>
   </div>
   <div class="row">
-    <div class="large-12 columns">
-      <h1>Najviše zahtjeva "ne raspolažemo"</h1>
-      <ul class="large-block-grid-3 small-block-grid-1 not-held">
-        <li ng-repeat="item in notHeld">
+    <div class="col-xs-12">
+      <h1>Most Not Held Requests</h1>
+      <ul class="row list-inline not-held">
+        <li class="col-xs-4" ng-repeat="item in notHeld">
           <a href="{{site}}/body/{{item.url}}">
             <h2>{{100 * item.rate / item.count | number:0}}%</h2>
-            <h4 class="subheader">{{item.rate}} od {{item.count}}</h4>
+            <h4 class="subheader">{{item.rate}} out of {{item.count}}</h4>
             <h3 class="subheader">{{item.name}}</h3>
           </a>
         </li>
@@ -71,10 +71,10 @@
     </div>
   </div>
   <div class="row">
-    <div class="large-12 columns">
-      <h1>Najviše zahtjeva</h1>
-      <ul class="large-block-grid-3 small-block-grid-1">
-        <li ng-repeat="item in popular">
+    <div class="col-xs-12">
+      <h1>Most Requests</h1>
+      <ul class="row list-inline">
+        <li class="col-xs-4" ng-repeat="item in popular">
           <a href="{{site}}/body/{{item.url}}">
             <h2>{{item.count}}</h2>
             <h3 class="subheader">{{item.name}}</h3>
@@ -84,14 +84,15 @@
     </div>
   </div>
   <div class="row">
-    <div class="large-12 columns">
-      <h1>Detalji</h1>
-      <table>
+    <div class="col-xs-12">
+      <h1>Public Body Statistics</h1>
+      <input type="search" class="form-control" ng-model="query" placeholder="Filter list"/>
+      <table class="table table-striped table-condensed">
         <thead>
           <tr>
             <th rowspan="2" width="33%">Body</th>
-            <th colspan="8">Broj dana do odgovora</th>
-            <th colspan="2">Neodgovoreni</th>
+            <th colspan="8">Working days to answer</th>
+            <th colspan="2">Unanswered</th>
           </tr>
           <tr>
             <th>1-5</th>
@@ -102,12 +103,12 @@
             <th>41-60</th>
             <th>61+</th>
             <th>Median</th>
-            <th>Broj</th>
-            <th>Najstariji</th>
+            <th>Count</th>
+            <th>Oldest</th>
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="request in requests">
+          <tr ng-repeat="request in requests | filter:query">
             <td><a href="{{request.body_url}}">{{request.body}}</a></td>
             <td>{{request.bands[0]}}</td>
             <td>{{request.bands[1]}}</td>
@@ -118,10 +119,22 @@
             <td>{{request.bands[6]}}</td>
             <td><b>{{request.median}}</b></td>
             <td><span ng-show="request.unanswered">{{request.unanswered}}</span></td>
-            <td><ng-pluralize count="request.oldest" when="{ '0': '', '1': '1 dan', 'other': '{} dana' }"></ng-pluralize></td>
+            <td><ng-pluralize count="request.oldest" when="{ '0': '', '1': '1 day', 'other': '{} days' }"></ng-pluralize></td>
           </tr>
         </tbody>
       </table>
     </div>
+  </div>
+</section>
+<section class="row">
+  <div class="col-xs-8 col-xs-offset-2 alert alert-warning">
+    <h3>
+      Some caveats
+    </h3>
+    <ul>
+      <li>The completion date is assumed to be the first reply matching the final status. 
+      <li>The categorisation is assumed to be accurate. 
+      <li>The date of completion also does not take into account extensions.
+    </ul>
   </div>
 </section>
