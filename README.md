@@ -16,4 +16,4 @@ HOWTO
 EXAMPLE
 =======
 
-You can see an example of the graphs running against [fyi.org.nz](https://fyi.org.nz) here: <http://wombleton.github.io/foie-graphs>
+You can see an example of the graphs running against [ImamoPravoZnati.org](http://imamopravoznati.org) here: <http://codeforcroatia.github.io/foie-graphs>
