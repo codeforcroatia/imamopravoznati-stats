@@ -1,6 +1,8 @@
 foie-graphs
 ===========
 
+[![Slack Status](http://slackin.codeforcroatia.org/badge.svg)](http://codeforcroatia.org/slackin)
+
 Scan an alaveteli instance and generate FOI performance graphs for the last 
 twelve months.
 
