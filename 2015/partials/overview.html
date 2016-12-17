@@ -1,0 +1,145 @@
+<section class="jumbotron">
+  <div class="row">
+    <h1>Pravo na pristup informacijama</h1>
+    <h2> 
+      od <b>{{from}}</b> do <b>{{to}}</b>
+      <br/>
+      na <a href="https://imamopravoznati.org">ImamoPravoZnati.org</a>
+    </h2>
+  </div>
+</section>
+<section class="container-fluid">
+  <div class="row overview">
+    <div class="col-xs-12">
+      <h1>{{total}} zahtjeva</h1>
+      <ul class="row list-inline">
+        <li class="col-xs-4 successful">
+          <h2>{{successCount}}</h2>
+          <h3 class="subheader">Uspješni</h3>
+        </li>
+        <li class="col-xs-4 refused">
+        <h2>{{refusedCount}}</h2>
+          <h3 class="subheader">Odbijeni</h3>
+        </li>
+        <li class="col-xs-4 not-held">
+          <h2>{{notHeldCount}}</h2>
+          <h3 class="subheader">Neraspoloživi</h3>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Najviše uspješnih zahtjeva</h1>
+      <ul class="row list-inline successful" >
+        <li class="col-xs-4" ng-repeat="item in successful">
+          <a href="{{site}}/body/{{item.url}}">
+            <h2>{{100 * item.rate / item.count | number:0}}%</h2>
+            <h4 class="subheader">{{item.rate}} od {{item.count}}</h4>
+            <h3 class="subheader">{{item.name}}</h3>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Najviše odbijenih zahtjeva</h1>
+      <ul class="row list-inline refused">
+        <li class="col-xs-4" ng-repeat="item in refused">
+          <a href="{{site}}/body/{{item.url}}">
+            <h2>{{100 * item.rate / item.count | number:0}}%</h2>
+            <h4 class="subheader">{{item.rate}} od {{item.count}}</h4>
+            <h3 class="subheader">{{item.name}}</h3>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Najviše neraspoloživih informacija</h1>
+      <ul class="row list-inline not-held">
+        <li class="col-xs-4" ng-repeat="item in notHeld">
+          <a href="{{site}}/body/{{item.url}}">
+            <h2>{{100 * item.rate / item.count | number:0}}%</h2>
+            <h4 class="subheader">{{item.rate}} od {{item.count}}</h4>
+            <h3 class="subheader">{{item.name}}</h3>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Najviše zahtjeva</h1>
+      <ul class="row list-inline">
+        <li class="col-xs-4" ng-repeat="item in popular">
+          <a href="{{site}}/body/{{item.url}}">
+            <h2>{{item.count}}</h2>
+            <h3 class="subheader">{{item.name}}</h3>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Statistika po tijelima javne vlasti</h1>
+      <input type="search" class="form-control" ng-model="query" placeholder="Filter list"/>
+      <table class="table table-striped table-condensed">
+        <thead>
+          <tr>
+            <th rowspan="2" width="33%">Tijelo</th>
+            <th colspan="8">Broj dana do odgovora</th>
+            <th colspan="2">Neodgovoreni</th>
+          </tr>
+          <tr>
+            <th>1-5</th>
+            <th>6-10</th>
+            <th>11-15</th>
+            <th>16-20</th>
+            <th>21-40</th>
+            <th>41-60</th>
+            <th>61+</th>
+            <th>Median</th>
+            <th>Broj</th>
+            <th>Najstariji</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="request in requests | filter:query">
+            <td><a href="{{request.body_url}}">{{request.body}}</a></td>
+            <td>{{request.bands[0]}}</td>
+            <td>{{request.bands[1]}}</td>
+            <td>{{request.bands[2]}}</td>
+            <td>{{request.bands[3]}}</td>
+            <td>{{request.bands[4]}}</td>
+            <td>{{request.bands[5]}}</td>
+            <td>{{request.bands[6]}}</td>
+            <td><b>{{request.median}}</b></td>
+            <td><span ng-show="request.unanswered">{{request.unanswered}}</span></td>
+            <td><ng-pluralize count="request.oldest" when="{ '0': '', '1': '1 dan', 'other': '{} dana' }"></ng-pluralize></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<section class="row">
+  <div class="col-xs-8 col-xs-offset-2 alert alert-warning">
+    <h3>
+      Neka upozorenja
+    </h3>
+    <p>Imajte na umu ograničenja u uvjetima izrade ove statistike:</p>
+    <ul>
+      <li>Datum završetka je pretpostavljen da je posljednji odgovor koji se podudara s konačnim statusom.
+      <li>Svrstavanje statusa zahtjeva koje radi korisnik smatra se točnim. 
+      <li>Datum završetka ne uzima u obzir odgode poput produženja roka za odgovor ili roka za zahtjev za dopunu ili ispravak.
+      <li>Ustupanje zahtjeva nije nužno uzet u u obzir, prikazano je prvo tijelo kojemu je dostavljen zahtjev.
+      <li>Iznimno ustupanje pojedinog zahtjeva jednom tijelu i kada je korisnik obavijestio administratore biti će uzeti u obzir.
+      <li>Zahtjevima se smatraju sve podvrste zahtjeva za pristup informacijama prema Zakonu o pravu na pristup informacijama.
+      <li>Ovaj izvještaj kreiran je na dan 31. prosinca 2015. te prikazuje stanje na taj dan i kasnije izmjene ovdje više neće biti ažurirane.
+    </ul>
+  </div>
+</section>
