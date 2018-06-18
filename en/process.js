@@ -1,5 +1,5 @@
 var Store = require('./lib/store'),
-  raw = require('./raw.json'),
+  raw = require('./raw-en.json'),
   _ = require('underscore'),
   fs = require('fs'),
   store;
@@ -15,4 +15,4 @@ _.each(raw.db, function(request) {
   store.save(request);
 });
 
-fs.writeFile('processed.json', JSON.stringify(store.getOptions()));
+fs.writeFile('processed-en.json', JSON.stringify(store.getOptions()));
