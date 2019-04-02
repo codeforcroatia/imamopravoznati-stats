@@ -10,7 +10,7 @@ var Search = require('./lib/search'),
     scraper,
     store,
     end = moment(),
-    start = end.clone().subtract(36, 'months').startOf('month'),
+    start = end.clone().subtract(12, 'months').startOf('month'),
     count = 0;
 
 search = new Search(process.env.ALAVETELI);

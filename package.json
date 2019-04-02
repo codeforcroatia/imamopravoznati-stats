@@ -3,7 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node process.js"
+    "start": "node index.js",
+    "index": "node index.js",
+    "index-all": "node index-all.js",
+    "index-annual": "node index-annual.js",
+    "process": "node process.js"
   },
   "dependencies": {
     "cheerio": "~0.12.0",
