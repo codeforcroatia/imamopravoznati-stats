@@ -4,22 +4,11 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
-      <script id="request-data" type="application/js">
-          var json = function () {
-        var jsonTemp = null;
-        $.ajax({
-            'async': false,
-            'url': "processed.json",
-            'success': function (data) {
-                jsonTemp = data;
-            }
-        });
-        return jsonTemp;
-    }(); 
-
-    document.write(json.a);
-    console.log(json);
-      </script>
+        <script id="request-data" type="text/javascript">
+            $.getJSON('processed.json', function(data) {
+              //do stuff with your data here
+            });
+        </script>
     <style>
       h1, h2, h3, h4 {
         font-family: 'Roboto', sans-serif;
