@@ -10,7 +10,7 @@ var Search = require('./lib/search'),
     scraper,
     store,
     end = moment(),
-    start = new Date('April 15, 2015 00:00:00'),
+    start = new Date('January 1, 2015 00:00:00'),
     count = 0;
 
 search = new Search(process.env.ALAVETELI);
@@ -57,7 +57,7 @@ scraper.on('finish', function() {
 
 function crawl() {
     store.clear();
-    search.start(36);
+    search.start(500);
 }
 
 crawl();
