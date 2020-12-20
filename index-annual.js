@@ -9,11 +9,12 @@ var Search = require('./lib/search'),
     search,
     scraper,
     store,
-    //end = moment(),
-    //start = end.clone().subtract(12, 'months').startOf('month'),
+    end = moment(),
+    start = end.clone().subtract(12, 'months').startOf('month'),
     today = moment(),
-    end = today.clone().subtract(3, 'months').startOf('month'),
-    start = today.clone().subtract(15, 'months').startOf('month'),
+    //end = today.clone().subtract(3, 'months').startOf('month'),
+    //start = today.clone().subtract(15, 'months').startOf('month'),
+    year = today.year(),   // i.e. 2020
     count = 0;
 
 search = new Search(process.env.ALAVETELI);
@@ -38,7 +39,7 @@ scraper.on('data', function(data) {
 scraper.on('finish', function() {
     var raw = JSON.stringify(store.getRaw());
 
-    fs.writeFile('raw.json', raw, (err) => {
+    fs.writeFile('raw-annual.json', raw, (err) => {
       if (err) throw err;
       console.log('The file has been saved!');
     });

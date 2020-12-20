@@ -3,16 +3,19 @@
   "version": "0.0.2",
   "private": true,
   "scripts": {
-    "start": "node index.js",
+    "start": "node process-monthly.js",
     "index": "node index.js",
+    "process": "node process.js",
     "index-all": "node index-all.js",
     "index-annual": "node index-annual.js",
-    "process-raw": "node process.js"
+    "process-annual": "node process-annual.js",
+    "index-monthly": "node index-monthly.js",
+    "process-monthly": "node process-monthly.js",
   },
   "dependencies": {
     "async": "~0.2.9",
     "cheerio": "~0.12.0",
-    "github-api": "~0.7.0",
+    "github-api": "^0.7.0",
     "jade": "~0.35.0",
     "median": "0.0.2",
     "moment": "^2.24.0",

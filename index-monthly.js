@@ -9,8 +9,11 @@ var Search = require('./lib/search'),
     search,
     scraper,
     store,
-    end = moment(),
-    start = new Date('January 1, 2015 00:00:00'),
+    today = moment(),
+    end = today,
+    start = today.clone().startOf('month'),
+    year = today.year(),   // i.e. 2020
+    month = today.month()+1,     // i.e. 10 (Month is 0-based, so 10 means 11th Month), so we add +1
     count = 0;
 
 search = new Search(process.env.ALAVETELI);
@@ -35,7 +38,7 @@ scraper.on('data', function(data) {
 scraper.on('finish', function() {
     var raw = JSON.stringify(store.getRaw());
 
-    fs.writeFile('raw.json', raw, (err) => {
+    fs.writeFile('raw-monthly.json', raw, (err) => {
       if (err) throw err;
       console.log('The file has been saved!');
     });
@@ -60,7 +63,7 @@ scraper.on('finish', function() {
 
 function crawl() {
     store.clear();
-    search.start(80);
+    search.start(12);
 }
 
 crawl();
