@@ -38,7 +38,10 @@ scraper.on('data', function(data) {
 scraper.on('finish', function() {
     var raw = JSON.stringify(store.getRaw());
 
-    fs.writeFile('raw.json', raw);
+    fs.writeFile('raw.json', raw, (err) => {
+      if (err) throw err;
+      console.log('The file has been saved!');
+    });
     /*
     new Repo({
         user: process.env.USER,

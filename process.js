@@ -15,4 +15,7 @@ _.each(raw.db, function(request) {
   store.save(request);
 });
 
-fs.writeFile('processed.json', JSON.stringify(store.getOptions()));
+fs.writeFile('processed.json', JSON.stringify(store.getOptions()), (err) => {
+  if (err) throw err;
+  console.log('The file has been saved!');
+});
