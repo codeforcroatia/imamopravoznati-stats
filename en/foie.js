@@ -10,7 +10,7 @@ foie.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'partials/overview.html',
+        templateUrl: '/en/partials/overview.html',
         controller: 'OverviewCtrl'
       })
       .otherwise({
