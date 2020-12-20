@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "private": true,
   "scripts": {
-    "start": "node process-monthly.js",
+    "start": "node process.js",
     "index": "node index.js",
     "process": "node process.js",
     "index-all": "node index-all.js",
