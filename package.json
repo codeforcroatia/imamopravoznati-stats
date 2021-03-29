@@ -10,7 +10,7 @@
     "index-annual": "node index-annual.js",
     "process-annual": "node process-annual.js",
     "index-monthly": "node index-monthly.js",
-    "process-monthly": "node process-monthly.js",
+    "process-monthly": "node process-monthly.js"
   },
   "dependencies": {
     "async": "~0.2.9",
