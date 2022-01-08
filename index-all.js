@@ -60,7 +60,8 @@ scraper.on('finish', function() {
 
 function crawl() {
     store.clear();
-    search.start(80);
+    //search.start(80);
+    search.start(1200);
 }
 
 crawl();
